@@ -1,0 +1,70 @@
+$font-family: Arial, Helvetica, sans-serif;
+$font-size: 16px;
+$bg-active-color: #3794d3;
+$bg-cancel-color: rgb(199, 196, 196);
+$color: white;
+$error-color: red;
+$error-font-weight: bold;
+
+.main {
+  display: grid;
+  grid-template-columns: 10% 40%;
+  grid-column-gap: 2px;
+}
+div {
+  align-items: center;
+}
+mat-label {
+  align-self: flex-end;
+  font-size: $font-size;
+  font-family: $font-family;
+}
+
+::ng-deep .mat-checkbox.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $bg-cancel-color;
+  font-size: $font-size;
+  width: 20px;
+  height: 20px;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: $bg-active-color;
+  width: 20px;
+  height: 20px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+mat-form-field.mat-form-field {
+  font-size: $font-size;
+}
+
+#submit {
+  background-color: $bg-active-color;
+}
+#cancel {
+  background-color: $bg-cancel-color;
+}
+
+button {
+  color: $color;
+  float: right;
+  margin: 10px;
+}
+
+@media all and (max-width: 769px) {
+  .main {
+    display: grid;
+    grid-template-columns: auto;
+  }
+}
+
+.errormsg {
+  color: $error-color;
+  font-weight: $error-font-weight;
+  position: relative;
+  margin-top: -28px;
+}

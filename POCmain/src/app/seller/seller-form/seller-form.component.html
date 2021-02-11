@@ -1,0 +1,109 @@
+<div>
+    <h2>Seller Form</h2>
+    <br />
+    <form [formGroup]="seller_RegistrationForm" (ngSubmit)="save()">
+      <div class="main">
+        <div>
+          <mat-label>Seller Name * </mat-label>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input type="text" formControlName="seller_Name" matInput required />
+  
+          </mat-form-field>
+          <div class="errormsg" *ngIf="
+            registrationFormControl &&
+            registrationFormControl.seller_Name &&
+            registrationFormControl.seller_Name.touched &&
+            registrationFormControl.seller_Name.errors?.required
+          ">
+            Please Enter Seller Name
+          </div>
+  
+        </div>
+  
+        <div>
+          <mat-label>Currencies * </mat-label>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="currencies" multiple>
+              <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{ currency }}</mat-option>
+            </mat-select>
+  
+          </mat-form-field>
+          <div class="errormsg" *ngIf="
+            registrationFormControl &&
+            registrationFormControl.currencies &&
+            registrationFormControl.currencies.touched &&
+            registrationFormControl.currencies.errors?.required
+          ">
+            Please Select Currency
+          </div>
+  
+        </div>
+        <div>
+          <mat-label>Offices * </mat-label>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="offices" multiple>
+              <mat-option *ngFor="let office of officesList" [value]="office">{{
+                office
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="errormsg" *ngIf="
+            registrationFormControl &&
+            registrationFormControl.offices &&
+            registrationFormControl.offices.touched &&
+            registrationFormControl.offices.errors?.required
+          ">
+            Please Select Your Office
+          </div>
+        </div>
+        <div>
+          <mat-label>Deal Type * </mat-label>
+        </div>
+        <div formGroupName="dealtype">
+          <mat-checkbox formControlName="bidded">Bidded</mat-checkbox>
+          <br />
+          <mat-checkbox formControlName="guaranteed">Guaranteed</mat-checkbox>
+        </div>
+        <div class="errormsg" *ngIf="
+            registrationFormControl &&
+            registrationFormControl.dealtype &&
+            registrationFormControl.dealtype.touched &&
+            registrationFormControl.dealtype.errors?.required
+          ">
+          Please Select Deal Type
+        </div>
+        <div>
+          <mat-label>Contact Name </mat-label>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input type="text" formControlName="contact_Name" matInput />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-label>Email </mat-label>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <input type="text" formControlName="email" matInput />
+          </mat-form-field>
+        </div>
+        <div></div>
+        <div class="buttons">
+          <button id="submit" class="text-primary" mat-raised-button type="submit"
+            [disabled]="!seller_RegistrationForm.valid">
+            Save
+          </button>
+          <button id="cancel" class="text-primary" mat-raised-button type="reset" value="reload">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>

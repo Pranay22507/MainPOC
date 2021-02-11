@@ -1,0 +1,64 @@
+$font-size: 16px;
+$side-margin: 10%;
+
+.mainDiv {
+  margin-left: $side-margin;
+}
+
+.SellerList {
+  margin-left: $side-margin;
+}
+
+.mat-raised-button {
+  border: none;
+  text-decoration: none;
+}
+
+.mat-table {
+  width: 80%;
+  .mat-header-cell {
+    font-size: $font-size;
+    text-align: center;
+  }
+  .mat-cell {
+    font-size: $font-size;
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .mat-table {
+    width: 100%;
+    .mat-header-cell {
+      font-size: 1rem;
+    }
+    .mat-cell {
+      font-size: 1rem;
+    }
+  }
+
+  .mainDiv {
+    margin-right: $side-margin;
+  }
+
+  .SellerList {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+}
+
+
+
+.wrap {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 100% !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.Offices {
+  @extend .wrap;
+  width: 52px;
+}
+
