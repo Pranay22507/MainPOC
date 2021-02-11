@@ -1,0 +1,51 @@
+<div class="mainDiv">
+<app-seller-form #sellerForm (send)="catchData($event)"></app-seller-form>
+</div>
+<div *ngIf="sellerList.length > 0" class="SellerList">
+    <h2>SellerList</h2>
+<table mat-table [dataSource]="sellerList" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.seller_Name}} </td>
+    </ng-container>
+
+      <ng-container matColumnDef="Currencies">
+        <th mat-header-cell *matHeaderCellDef > Currencies </th>
+        <td mat-cell *matCellDef="let element" class="currencies"> {{element.currencies}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Offices">
+        <th mat-header-cell *matHeaderCellDef> Offices </th>
+        <td mat-cell *matCellDef="let element" class="Offices"> {{element.offices}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="Bidded Deals">
+      <th mat-header-cell *matHeaderCellDef> Bidded Deals </th>
+      <td mat-cell *matCellDef="let element"> {{element.bidded}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="Guaranteed Deals">
+      <th mat-header-cell *matHeaderCellDef> Guaranteed Deals </th>
+      <td mat-cell *matCellDef="let element"> {{element.guaranteed}} </td>
+    </ng-container>
+  
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element"> <button (click)="delete(element.registrtion_Id)" mat-button><mat-icon>delete_outline</mat-icon></button> </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> </th>
+        <td mat-cell *matCellDef="let element"> <button (click)="sellerForm.setFormData(element)" mat-button ><mat-icon>create_outline</mat-icon> </button></td>
+      </ng-container> 
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+  </table>
+</div>
+
+
+  
+  
