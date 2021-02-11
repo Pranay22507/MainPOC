@@ -1,7 +1,8 @@
 <div>
     <h2>Seller Form</h2>
     <br />
-    <form [formGroup]="seller_RegistrationForm" (ngSubmit)="save()">
+    <form [formGroup]="seller_RegistrationForm"
+      #formDirective="ngForm" (ngSubmit)="submitForm(formDirective)" >
       <div class="main">
         <div>
           <mat-label>Seller Name * </mat-label>
@@ -97,10 +98,10 @@
         <div></div>
         <div class="buttons">
           <button id="submit" class="text-primary" mat-raised-button type="submit"
-            [disabled]="!seller_RegistrationForm.valid">
+            [disabled]="!seller_RegistrationForm.valid" value="reset">
             Save
           </button>
-          <button id="cancel" class="text-primary" mat-raised-button type="reset" value="reload">
+          <button #cancelbtn id="cancel" class="text-primary" mat-raised-button type="reset" value="reload">
             Cancel
           </button>
         </div>

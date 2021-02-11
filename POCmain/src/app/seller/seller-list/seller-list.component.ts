@@ -31,13 +31,13 @@ export class SellerListComponent implements OnInit {
     if (index != -1) {
       this.sellerList.splice(index, 1, data);
       this.sellerList = [...this.sellerList];
-      this.toaster.success(`Hello ${data.seller_Name} your data is Successfully Updated`);
+      this.toaster.success(`Updated Successfully`);
     }
     //create new record
     else {
       this.sellerList.push(data);
       this.sellerList = [...this.sellerList];
-      this.toaster.success(`Congratulation ${data.seller_Name} Your Data is Saved`);
+      this.toaster.success(`Saved Successfully`);
     }
   }
 
@@ -46,6 +46,6 @@ export class SellerListComponent implements OnInit {
     let ID = this.sellerList.findIndex((obj) => obj.registrtion_Id == Id);
     this.sellerList.splice(ID, 1);
     this.sellerList = [...this.sellerList];
-    this.toaster.success(`Record is Successfully Deleted`);
+    this.toaster.success(`Deleted Successfully `);
   };
 }
