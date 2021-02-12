@@ -20,7 +20,7 @@
           ">
             Please Enter Seller Name
           </div>
-  
+  <br>
         </div>
   
         <div>
@@ -41,7 +41,7 @@
           ">
             Please Select Currency
           </div>
-  
+  <br>
         </div>
         <div>
           <mat-label>Offices * </mat-label>
@@ -62,6 +62,7 @@
           ">
             Please Select Your Office
           </div>
+          <br>
         </div>
         <div>
           <mat-label>Deal Type * </mat-label>
@@ -70,6 +71,8 @@
           <mat-checkbox formControlName="bidded">Bidded</mat-checkbox>
           <br />
           <mat-checkbox formControlName="guaranteed">Guaranteed</mat-checkbox>
+          <br>
+          <br>
         </div>
         <div class="errormsg" *ngIf="
             registrationFormControl &&
@@ -94,11 +97,19 @@
           <mat-form-field appearance="outline">
             <input type="text" formControlName="email" matInput />
           </mat-form-field>
+          <div class="errormsg" *ngIf="
+          registrationFormControl &&
+          registrationFormControl.email &&
+          registrationFormControl.email.errors?.pattern
+        ">
+          Please Enter Valid Email
+        </div>
+        <br>
         </div>
         <div></div>
         <div class="buttons">
           <button id="submit" class="text-primary" mat-raised-button type="submit"
-            [disabled]="!seller_RegistrationForm.valid" value="reset">
+            [disabled]="!seller_RegistrationForm.valid" >
             Save
           </button>
           <button #cancelbtn id="cancel" class="text-primary" mat-raised-button type="reset" value="reload">
