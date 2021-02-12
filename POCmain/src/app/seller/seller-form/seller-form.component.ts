@@ -1,14 +1,12 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
-  Input,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { SellerData } from '../registrationFields';
 import { atLeastOneDealtypeReq } from '../atLeastOneDealtypeRequired';
 

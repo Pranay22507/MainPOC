@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, OnInit } from '@angular/core';
 import { SellerData } from '../registrationFields';
 import {ToastrService} from 'ngx-toastr';
 @Component({
