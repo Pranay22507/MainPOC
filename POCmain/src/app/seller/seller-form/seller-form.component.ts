@@ -58,6 +58,22 @@ export class SellerFormComponent implements OnInit {
   }
 
 
+  // on update click set form data
+  setFormData = (x: SellerData) => {
+    this.updateId = x.registrtion_Id;
+    this.seller_RegistrationForm.patchValue({
+      seller_Name: x.seller_Name,
+      currencies: x.currencies,
+      offices: x.offices,
+      dealtype: {
+        bidded: x.bidded == 'YES' ? true : false,
+        guaranteed: x.guaranteed == 'YES' ? true : false,
+      },
+      contact_Name: x.contact_Name,
+      email: x.email,
+    });
+  };
+
   //save record
   save = () => {
     // console.log(this.formReset.nativeElement);
