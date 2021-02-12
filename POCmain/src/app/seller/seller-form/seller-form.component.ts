@@ -28,7 +28,7 @@ export class SellerFormComponent implements OnInit {
   seller_RegistrationForm: any;
   constructor(private fb: FormBuilder) {}
   
-  fillFormDate() {
+  fillFormData() {
     this.seller_RegistrationForm = this.fb.group(
       {
         seller_Name: ['', [Validators.required]],
@@ -54,7 +54,7 @@ export class SellerFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fillFormDate();
+    this.fillFormData();
   }
 
 
@@ -101,7 +101,7 @@ export class SellerFormComponent implements OnInit {
 
       //emit event and pass data to the table i.e seller-list component
       this.send.emit(this.data);
-      this.fillFormDate();
+      this.fillFormData();
       //set those field undefined
 
       this.data = undefined;
