@@ -9,7 +9,7 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input type="text" formControlName="seller_Name" matInput required />
+            <input type="text" formControlName="seller_Name" matInput required  class="inputfields"/>
   
           </mat-form-field>
           <div class="errormsg" *ngIf="
@@ -28,7 +28,7 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <mat-select formControlName="currencies" multiple>
+            <mat-select formControlName="currencies" multiple class="inputfields">
               <mat-option *ngFor="let currency of currenciesList" [value]="currency">{{ currency }}</mat-option>
             </mat-select>
   
@@ -48,7 +48,7 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <mat-select formControlName="offices" multiple>
+            <mat-select formControlName="offices" multiple class="inputfields">
               <mat-option *ngFor="let office of officesList" [value]="office">{{
                 office
                 }}</mat-option>
@@ -87,7 +87,7 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input type="text" formControlName="contact_Name" matInput />
+            <input type="text" formControlName="contact_Name" matInput class="inputfields"/>
           </mat-form-field>
         </div>
         <div>
@@ -95,7 +95,7 @@
         </div>
         <div>
           <mat-form-field appearance="outline">
-            <input type="text" formControlName="email" matInput />
+            <input type="text" formControlName="email" matInput class="inputfields" />
           </mat-form-field>
           <div class="errormsg" *ngIf="
           registrationFormControl &&

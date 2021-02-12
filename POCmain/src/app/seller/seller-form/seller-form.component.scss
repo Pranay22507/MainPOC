@@ -40,8 +40,12 @@ mat-label {
 
 mat-form-field.mat-form-field {
   font-size: $font-size;
-  // vertical-align:ce;
 }
+.inputfields{
+  vertical-align: top;
+  margin-bottom: 5px;
+}
+
 
 #submit {
   background-color: $bg-active-color;
