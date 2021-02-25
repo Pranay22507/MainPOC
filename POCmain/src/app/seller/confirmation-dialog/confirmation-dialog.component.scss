@@ -1,0 +1,17 @@
+.actions{
+    margin-left: 20%;
+}
+$bg-cancel-color: rgb(199, 196, 196);
+$bg-active-color: #3794d3;
+$color:white;
+
+#delete {
+    background-color: $bg-active-color;
+    color: $color;
+  }
+
+  #cancel1 {
+    background-color: $bg-cancel-color;
+    color: $color;
+  }
+  

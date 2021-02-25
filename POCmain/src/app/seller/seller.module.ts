@@ -4,9 +4,10 @@ import { SellerListComponent } from './seller-list/seller-list.component';
 import { SellerFormComponent } from './seller-form/seller-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 const sellerComponent = [SellerListComponent, SellerFormComponent];
 @NgModule({
-  declarations: [sellerComponent],
+  declarations: [sellerComponent, ConfirmationDialogComponent],
   imports: [
     CommonModule, 
     FormsModule, 

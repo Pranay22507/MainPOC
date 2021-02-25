@@ -7,12 +7,13 @@ import { MaterialModule } from '../../material/material.module';
 import { ToastrModule } from 'ngx-toastr';
 import { SellerListComponent } from './seller-list.component';
 import { ToastrService } from 'ngx-toastr';
-import { SellerData } from '../registrationFields';
 import { SellerFormComponent } from '../seller-form/seller-form.component';
+import { MatDialog } from '@angular/material/dialog';
 describe('SellerListComponent', () => {
   let component: SellerListComponent;
   let fixture: ComponentFixture<SellerListComponent>;
   let service: ToastrService;
+  let dialog:MatDialog;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -25,13 +26,14 @@ describe('SellerListComponent', () => {
         ToastrModule.forRoot(),
       ],
       declarations: [SellerListComponent,SellerFormComponent],
-      providers: [ToastrService],
+      providers: [ToastrService, MatDialog],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SellerListComponent);
     service = TestBed.get(ToastrService);
+    dialog = TestBed.get(MatDialog);
     component = fixture.componentInstance;
     component.sellerList = [
       {
@@ -107,6 +109,7 @@ describe('SellerListComponent', () => {
   });
 
   it("Delete Record",()=>{
+    
      component.delete(101);
      expect(component.sellerList.length).toEqual(0);
   })

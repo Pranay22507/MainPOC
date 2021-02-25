@@ -1,14 +1,13 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   OnInit,
   Output,
-  ViewChild,
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SellerData } from '../registrationFields';
-import { atLeastOneDealtypeReq } from '../atLeastOneDealtypeRequired';
+import { atLeastOneDealtypeReq } from '../atLeastOneDealtypeRequired.validator';
+import { noWhitespacesValidator } from '../noWhiteSpaces.validator';
 
 @Component({
   selector: 'app-seller-form',
@@ -22,14 +21,15 @@ export class SellerFormComponent implements OnInit {
   officesList: string[] = ['JP', 'UK', 'US', 'FR', 'AU', 'IT'];
   currenciesList: string[] = ['USD', 'GBR', 'EUR'];
   @Output() send: EventEmitter<SellerData> = new EventEmitter();
-  @ViewChild('cancelbtn') formReset!: ElementRef;
+
   seller_RegistrationForm: any;
+  
   constructor(private fb: FormBuilder) {}
   
   fillFormData() {
     this.seller_RegistrationForm = this.fb.group(
       {
-        seller_Name: ['', [Validators.required]],
+        seller_Name: [null, [Validators.required]],
         currencies: ['', [Validators.required]],
         offices: ['', [Validators.required]],
         dealtype: this.fb.group({
@@ -42,9 +42,10 @@ export class SellerFormComponent implements OnInit {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       },
-      { validators: atLeastOneDealtypeReq }
+      { validators: [atLeastOneDealtypeReq,noWhitespacesValidator]}
     );
   }
+
 
   //to get the controls
   get registrationFormControl() {
@@ -74,8 +75,6 @@ export class SellerFormComponent implements OnInit {
 
   //save record
   save = () => {
-    // console.log(this.formReset.nativeElement);
-
     if (this.seller_RegistrationForm.valid) {
       this.data = {
         registrtion_Id: this.updateId == undefined ? this.Id : this.updateId,
