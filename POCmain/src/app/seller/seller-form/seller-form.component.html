@@ -22,6 +22,7 @@
         </mat-form-field>
         <div
           class="errormsg"
+          [ngClass]= "{'extendederror': seller_RegistrationForm.hasError('whiteSpacesNotAllowed')}"
           *ngIf="
             seller_RegistrationForm.controls.seller_Name.value &&
             seller_RegistrationForm.hasError('whiteSpacesNotAllowed')

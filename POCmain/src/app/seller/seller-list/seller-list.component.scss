@@ -47,10 +47,6 @@ $side-margin: 10%;
   }
 }
 
-
-//The !important property in CSS means that all subsequent rules on an element are to be ignored,
-// and the rule denoted by !important is to be applied. This rule overrides all previous styling 
-//rules ​-- the !important property increases its priority.
 .wrap {
   word-wrap: break-word !important;
   white-space: unset !important;

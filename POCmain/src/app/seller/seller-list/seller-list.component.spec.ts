@@ -9,11 +9,15 @@ import { SellerListComponent } from './seller-list.component';
 import { ToastrService } from 'ngx-toastr';
 import { SellerFormComponent } from '../seller-form/seller-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
+import { By } from '@angular/platform-browser';
 describe('SellerListComponent', () => {
   let component: SellerListComponent;
   let fixture: ComponentFixture<SellerListComponent>;
+  let fixture1: ComponentFixture<ConfirmationDialogComponent>;
   let service: ToastrService;
-  let dialog:MatDialog;
+  let dialog: MatDialog;
+  let dialogComponent: ConfirmationDialogComponent;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -25,16 +29,22 @@ describe('SellerListComponent', () => {
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
       ],
-      declarations: [SellerListComponent,SellerFormComponent],
+      declarations: [
+        SellerListComponent,
+        SellerFormComponent,
+        ConfirmationDialogComponent,
+      ],
       providers: [ToastrService, MatDialog],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SellerListComponent);
+    fixture1 = TestBed.createComponent(ConfirmationDialogComponent);
     service = TestBed.get(ToastrService);
     dialog = TestBed.get(MatDialog);
     component = fixture.componentInstance;
+    dialogComponent = fixture1.componentInstance;
     component.sellerList = [
       {
         registrtion_Id: 101,
@@ -103,16 +113,15 @@ describe('SellerListComponent', () => {
       contact_Name: 'shaushank',
       email: 'john123@gmail.com',
     };
-    
+
     component.catchData(data);
     expect(component.sellerList.length).toEqual(1);
   });
 
-  it("Delete Record",()=>{
-    
-     component.delete(101);
-     expect(component.sellerList.length).toEqual(0);
-  })
-
-  
+  it('Delete Record', () => {
+    component.delete(101);
+    const buttonElement = fixture1.debugElement.query(By.css('.delete-button'));
+    buttonElement.triggerEventHandler('click', null);
+    expect(component.sellerList.length).toEqual(0);
+  });
 });

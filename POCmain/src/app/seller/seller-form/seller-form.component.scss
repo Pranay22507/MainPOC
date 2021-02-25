@@ -41,11 +41,10 @@ mat-label {
 mat-form-field.mat-form-field {
   font-size: $font-size;
 }
-.inputfields{
+.inputfields {
   vertical-align: top;
   margin-bottom: 5px;
 }
-
 
 #submit {
   background-color: $bg-active-color;
@@ -74,6 +73,15 @@ button {
   margin-top: -28px;
 }
 
-.labels{
+.labels {
   margin-bottom: 12px;
+}
+
+.extendederror {
+  ::ng-deep {
+    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
+      color: yellow !important;
+      opacity: 0.8 !important;
+    }
+  }
 }
