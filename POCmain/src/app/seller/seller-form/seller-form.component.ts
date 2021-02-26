@@ -92,8 +92,8 @@ export class SellerFormComponent implements OnInit {
       //emit event and pass data to the table i.e seller-list component
       this.send.emit(this.data);
       this.fillFormData();
+      
       //set those field undefined
-
       this.data = undefined;
       this.updateId = undefined;
     }

@@ -1,15 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { SellerData } from '../registrationFields';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-// import { MatDialog } from '@angular/material/dialog';
+
 @Component({
   selector: 'app-seller-list',
   templateUrl: './seller-list.component.html',
   styleUrls: ['./seller-list.component.scss'],
 })
-export class SellerListComponent implements OnInit, OnDestroy {
+export class SellerListComponent implements OnInit{
   dialogRef;
   CurrentSellerData?: SellerData;
   sellerList: SellerData[] = [];
@@ -70,14 +70,9 @@ export class SellerListComponent implements OnInit, OnDestroy {
     
   };
 
-//trackby (Replace only updated DOM element in collection)
+//trackby (Replace only updated DOM element from collection not whole collection)
   trackList(index: number, item: SellerData): string {
     return `${item.registrtion_Id}`;
   }
 
-
-  ngOnDestroy(): void {
-    this.dialogRef.afterClosed().unsubscribe();
-    throw new Error('Method not implemented.');
-  }
 }

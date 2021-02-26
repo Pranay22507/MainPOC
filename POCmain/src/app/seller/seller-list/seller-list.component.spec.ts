@@ -8,16 +8,17 @@ import { ToastrModule } from 'ngx-toastr';
 import { SellerListComponent } from './seller-list.component';
 import { ToastrService } from 'ngx-toastr';
 import { SellerFormComponent } from '../seller-form/seller-form.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation-dialog.component';
-import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
 describe('SellerListComponent', () => {
   let component: SellerListComponent;
   let fixture: ComponentFixture<SellerListComponent>;
-  let fixture1: ComponentFixture<ConfirmationDialogComponent>;
+  let fixtureComponent2: ComponentFixture<ConfirmationDialogComponent>;
   let service: ToastrService;
   let dialog: MatDialog;
   let dialogComponent: ConfirmationDialogComponent;
+  let instanceComponent2: any;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -40,11 +41,12 @@ describe('SellerListComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SellerListComponent);
-    fixture1 = TestBed.createComponent(ConfirmationDialogComponent);
+    fixtureComponent2 = TestBed.createComponent(ConfirmationDialogComponent);
     service = TestBed.get(ToastrService);
     dialog = TestBed.get(MatDialog);
     component = fixture.componentInstance;
-    dialogComponent = fixture1.componentInstance;
+    dialogComponent = fixtureComponent2.componentInstance;
+    instanceComponent2 = fixtureComponent2.debugElement.nativeElement;
     component.sellerList = [
       {
         registrtion_Id: 101,
@@ -58,6 +60,7 @@ describe('SellerListComponent', () => {
       },
     ];
     fixture.detectChanges();
+    fixtureComponent2.detectChanges();
   });
 
   it('should create', () => {
@@ -118,10 +121,16 @@ describe('SellerListComponent', () => {
     expect(component.sellerList.length).toEqual(1);
   });
 
-  it('Delete Record', () => {
+  it('Record Deleted', () => {
+    spyOn(component.dialog, 'open').and.returnValue({
+      afterClosed: () => of(true),
+    } as MatDialogRef<typeof component>);
     component.delete(101);
-    const buttonElement = fixture1.debugElement.query(By.css('.delete-button'));
-    buttonElement.triggerEventHandler('click', null);
     expect(component.sellerList.length).toEqual(0);
+  });
+
+  it('Record Not Deleted', () => {
+    component.delete(101);
+    expect(component.sellerList.length).toEqual(1);
   });
 });
