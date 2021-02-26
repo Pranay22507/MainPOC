@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SellerData } from '../registrationFields';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import { ConfirmationDialogComponent } from '../confirmation-dialog/confirmation
   templateUrl: './seller-list.component.html',
   styleUrls: ['./seller-list.component.scss'],
 })
-export class SellerListComponent implements OnInit{
+export class SellerListComponent implements OnInit {
   dialogRef;
   CurrentSellerData?: SellerData;
   sellerList: SellerData[] = [];
@@ -22,11 +22,8 @@ export class SellerListComponent implements OnInit{
     'delete',
     'update',
   ];
-  
-  constructor(
-    private toaster: ToastrService,public dialog: MatDialog
-  ) {}
-  
+
+  constructor(private toaster: ToastrService, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -39,7 +36,7 @@ export class SellerListComponent implements OnInit{
       this.sellerList.splice(index, 1, data);
 
       // TO FORCE DATA-TABLE's DATASOURCE TO REFRESH
-       this.sellerList = [...this.sellerList];
+      this.sellerList = [...this.sellerList];
       this.toaster.success(`Updated Successfully`);
     }
     //create new record
@@ -53,26 +50,21 @@ export class SellerListComponent implements OnInit{
   //delete record
   delete = (Id: number) => {
     // open dialog
-     this.dialogRef = this.dialog.open(ConfirmationDialogComponent);
-    
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent);
 
-    this.dialogRef.afterClosed().subscribe(result => {
-  // if delete click
-  console.log(result);
-  
-      if(result){
+    this.dialogRef.afterClosed().subscribe((result) => {
+      // if delete click
+      if (result) {
         let ID = this.sellerList.findIndex((obj) => obj.registrtion_Id == Id);
         this.sellerList.splice(ID, 1);
         this.sellerList = [...this.sellerList];
         this.toaster.success(`Deleted Successfully`);
       }
     });
-    
   };
 
-//trackby (Replace only updated DOM element from collection not whole collection)
+  //trackby (Replace only updated DOM element from collection not whole collection)
   trackList(index: number, item: SellerData): string {
     return `${item.registrtion_Id}`;
   }
-
 }
