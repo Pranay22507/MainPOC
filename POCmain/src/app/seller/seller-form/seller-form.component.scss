@@ -57,6 +57,7 @@ button {
   color: $color;
   float: right;
   margin: 10px;
+  font-weight: bold;
 }
 
 @media all and (max-width: 769px) {
@@ -73,15 +74,12 @@ button {
   margin-top: -28px;
 }
 
+.errormsg2{
+  @extend .errormsg;
+  margin-top: -2px;
+}
+
 .labels {
   margin-bottom: 12px;
 }
 
-.extendederror {
-  ::ng-deep {
-    .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-      color: yellow !important;
-      opacity: 0.8 !important;
-    }
-  }
-}

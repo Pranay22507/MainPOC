@@ -22,16 +22,6 @@
         </mat-form-field>
         <div
           class="errormsg"
-          [ngClass]= "{'extendederror': seller_RegistrationForm.hasError('whiteSpacesNotAllowed')}"
-          *ngIf="
-            seller_RegistrationForm.controls.seller_Name.value &&
-            seller_RegistrationForm.hasError('whiteSpacesNotAllowed')
-          "
-        >
-          Please Enter Valid Seller Name
-        </div>
-        <div
-          class="errormsg"
           *ngIf="
             registrationFormControl &&
             registrationFormControl.seller_Name &&
@@ -102,19 +92,19 @@
         <br />
         <mat-checkbox formControlName="guaranteed">Guaranteed</mat-checkbox>
         <br />
-        <br />
-      </div>
       <div
-        class="errormsg"
+        class="errormsg2"
         *ngIf="
-          registrationFormControl &&
-          registrationFormControl.dealtype &&
-          registrationFormControl.dealtype.touched &&
-          registrationFormControl.dealtype.errors?.required
+        registrationFormControl &&
+        registrationFormControl.dealtype &&
+        registrationFormControl.dealtype.touched &&
+          seller_RegistrationForm.hasError('DealSelected')
         "
       >
         Please Select Deal Type
       </div>
+      <br>
+    </div>
       <div class="labels">
         <mat-label>Contact Name </mat-label>
       </div>

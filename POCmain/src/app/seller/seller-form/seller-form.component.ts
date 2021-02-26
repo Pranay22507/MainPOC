@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SellerData } from '../registrationFields';
 import { atLeastOneDealtypeReq } from '../atLeastOneDealtypeRequired.validator';
@@ -23,13 +18,13 @@ export class SellerFormComponent implements OnInit {
   @Output() send: EventEmitter<SellerData> = new EventEmitter();
 
   seller_RegistrationForm: any;
-  
+
   constructor(private fb: FormBuilder) {}
-  
+
   fillFormData() {
     this.seller_RegistrationForm = this.fb.group(
       {
-        seller_Name: [null, [Validators.required]],
+        seller_Name: [null, [Validators.required, noWhitespacesValidator]],
         currencies: ['', [Validators.required]],
         offices: ['', [Validators.required]],
         dealtype: this.fb.group({
@@ -42,10 +37,9 @@ export class SellerFormComponent implements OnInit {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       },
-      { validators: [atLeastOneDealtypeReq,noWhitespacesValidator]}
+      { validators: [atLeastOneDealtypeReq] }
     );
   }
-
 
   //to get the controls
   get registrationFormControl() {
@@ -55,7 +49,6 @@ export class SellerFormComponent implements OnInit {
   ngOnInit(): void {
     this.fillFormData();
   }
-
 
   // on update click set form data
   setFormData = (x: SellerData) => {
@@ -108,7 +101,8 @@ export class SellerFormComponent implements OnInit {
 
   submitForm(formDirective): void {
     this.save();
+    //reset form
     formDirective.resetForm();
-    this.seller_RegistrationForm.reset();
+    //this.seller_RegistrationForm.reset();
   }
 }
