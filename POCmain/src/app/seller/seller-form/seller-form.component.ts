@@ -16,7 +16,6 @@ export class SellerFormComponent implements OnInit {
   officesList: string[] = ['JP', 'UK', 'US', 'FR', 'AU', 'IT'];
   currenciesList: string[] = ['USD', 'GBR', 'EUR'];
   @Output() send: EventEmitter<SellerData> = new EventEmitter();
-
   seller_RegistrationForm: any;
 
   constructor(private fb: FormBuilder) {}
@@ -92,7 +91,7 @@ export class SellerFormComponent implements OnInit {
       //emit event and pass data to the table i.e seller-list component
       this.send.emit(this.data);
       this.fillFormData();
-      
+
       //set those field undefined
       this.data = undefined;
       this.updateId = undefined;
@@ -103,6 +102,5 @@ export class SellerFormComponent implements OnInit {
     this.save();
     //reset form
     formDirective.resetForm();
-    //this.seller_RegistrationForm.reset();
   }
 }
