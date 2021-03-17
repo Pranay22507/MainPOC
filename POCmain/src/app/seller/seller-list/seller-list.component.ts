@@ -36,6 +36,7 @@ export class SellerListComponent implements OnInit {
       this.sellerList.splice(index, 1, data);
 
       // TO FORCE DATA-TABLE's DATASOURCE TO REFRESH
+      //Spread
       this.sellerList = [...this.sellerList];
       this.toaster.success(`Updated Successfully`);
     }

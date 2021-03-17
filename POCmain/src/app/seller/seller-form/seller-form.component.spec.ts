@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SellerFormComponent } from './seller-form.component';
@@ -10,6 +7,7 @@ import { MaterialModule } from '../../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SellerData } from '../registrationFields';
 import { SellerListComponent } from '../seller-list/seller-list.component';
+import { By } from '@angular/platform-browser';
 // import { atLeastOneDealtypeReq } from '../atLeastOneDealtypeRequired';
 
 describe('SellerFormComponent', () => {
@@ -26,7 +24,7 @@ describe('SellerFormComponent', () => {
         MaterialModule,
         BrowserAnimationsModule,
       ],
-      declarations: [SellerFormComponent,SellerListComponent],
+      declarations: [SellerFormComponent, SellerListComponent],
     }).compileComponents();
   });
 
@@ -57,7 +55,7 @@ describe('SellerFormComponent', () => {
   });
 
   it('Seller Form invalid when Empty', () => {
-    expect(component.registrationFormControl.valid).toBeFalsy();
+    expect(component.seller_RegistrationForm.valid).toBeFalsy();
   });
 
   it('Seller Name field validity', () => {
@@ -82,43 +80,39 @@ describe('SellerFormComponent', () => {
   });
 
   it('Seller Form valid when filled', () => {
-    const seller_name = component.registrationFormControl.seller_Name;
-    seller_name.setValue('John Wick');
-    const currencies = component.registrationFormControl.currencies;
-    currencies.setValue(['USD', 'GBR', 'EUR']);
-    const offices = component.registrationFormControl.offices;
-    offices.setValue(['JP', 'UK', 'US', 'FR', 'AU', 'IT']);
-    component.registrationFormControl.dealtype.value.bidded = true;
-    component.registrationFormControl.dealtype.value.guaranteed = false;
-
-    const contact_Name = component.registrationFormControl.contact_Name;
-    contact_Name.setValue('John Wick');
-    const email = component.registrationFormControl.email;
-    email.setValue('john123@gmail.com');
-    expect(email.valid).toBeTruthy();
-
-    expect(component.registrationFormControl.invalid).toBeFalsy();
-  });
-
-
-  it('should emit when clicked (pass data to seller List)', () => {
-    let data = {
-      registrtion_Id: 101,
+    component.seller_RegistrationForm.setValue({
       seller_Name: 'John',
       currencies: ['USD', 'GBR', 'EUR'],
       offices: ['JP', 'UK', 'US', 'FR', 'AU', 'IT'],
-      bidded: 'true',
-      guaranteed: 'false',
+      dealtype: { bidded: true, guaranteed: false },
       contact_Name: 'shaushank',
       email: 'john123@gmail.com',
-    };
-
-    component.send.subscribe((event:SellerData) => {
-      data = event;
     });
+    expect(component.seller_RegistrationForm.valid).toBeTruthy();
+  });
+
+  it('should emit when clicked (pass data to seller List)', () => {
+    component.seller_RegistrationForm.setValue({
+      seller_Name: 'John',
+      currencies: ['USD', 'GBR', 'EUR'],
+      offices: ['JP', 'UK', 'US', 'FR', 'AU', 'IT'],
+      dealtype: { bidded: true, guaranteed: false },
+      contact_Name: 'shaushank',
+      email: 'john123@gmail.com',
+    });
+    expect(component.seller_RegistrationForm.valid).toBeTruthy();
+
+    spyOn(component.send, 'emit');
     component.save();
-    expect(data).toBe(data);
+    expect(component.send.emit).toHaveBeenCalledWith({
+      registrtion_Id: 1,
+      seller_Name: 'John',
+      currencies: ['USD', 'GBR', 'EUR'],
+      offices: ['JP', 'UK', 'US', 'FR', 'AU', 'IT'],
+      bidded: 'YES',
+      guaranteed: 'NO',
+      contact_Name: 'shaushank',
+      email: 'john123@gmail.com',
+    });
   });
 });
-
-

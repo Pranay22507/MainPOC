@@ -21,23 +21,23 @@ export class SellerFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   fillFormData() {
-    this.seller_RegistrationForm = this.fb.group(
-      {
-        seller_Name: [null, [Validators.required, noWhitespacesValidator]],
-        currencies: ['', [Validators.required]],
-        offices: ['', [Validators.required]],
-        dealtype: this.fb.group({
+    this.seller_RegistrationForm = this.fb.group({
+      seller_Name: [null, [Validators.required, noWhitespacesValidator]],
+      currencies: ['', [Validators.required]],
+      offices: ['', [Validators.required]],
+      dealtype: this.fb.group(
+        {
           bidded: [],
           guaranteed: [],
-        }),
-        contact_Name: [],
-        email: [
-          '',
-          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
-        ],
-      },
-      { validators: [atLeastOneDealtypeReq] }
-    );
+        },
+        { validators: atLeastOneDealtypeReq }
+      ),
+      contact_Name: [],
+      email: [
+        '',
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ],
+    });
   }
 
   //to get the controls
